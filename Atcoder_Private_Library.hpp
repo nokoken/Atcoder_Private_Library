@@ -8,7 +8,7 @@ using ll = long long;
 using Graph = std::vector<std::vector<ll>>;
 
 // 任意のグラフ内の要素を展開して表示する関数
-void graph_show(Graph g, ll N)
+void graphShow(Graph g, ll N)
 {
     N++;
     for (ll i = 1; i < N; i++)
@@ -27,8 +27,30 @@ void graph_show(Graph g, ll N)
     }
 }
 
+// std::pairの中身同士を比較し期待通りの並びならtrueをそうじゃないならfalseを返す関数(pairを含むvectorのソートなんかに使うやつ)
+bool pairCompare(std::pair<ll, std::string> a, std::pair<ll, std::string> b)
+{
+    // 基本はfirstで比較
+    if (a.first != b.first)
+    {
+        // return a.first < b.first; // 昇順
+        return a.first > b.first; // 降順
+    }
+
+    // それ以外はsecondで比較
+    if (a.second != b.second)
+    {
+        return a.second < b.second;
+    }
+    else
+    {
+        // どちらも同じ
+        return true;
+    }
+}
+
 // long long型の累乗をしたい時に使う関数
-ll ll_pow(ll x, ll a)
+ll llPow(ll x, ll a)
 {
     ll ans = x;
     if (a == 0)
@@ -43,7 +65,7 @@ ll ll_pow(ll x, ll a)
 }
 
 // k進数の数字sを10進数に変換する関数
-ll n_hex(std::string s, ll k)
+ll nHex(std::string s, ll k)
 {
     ll ans = 0;
     for (char x : s)
@@ -97,7 +119,7 @@ std::vector<ll> S_O_E(ll x)
 }
 
 // 引数としたll型の数値の約数の数を数えて返す関数
-ll divisor_count(ll a)
+ll divisorCount(ll a)
 {
     ll ans = 0;
     for (ll i = 1; i <= a; i++)
@@ -109,7 +131,7 @@ ll divisor_count(ll a)
 }
 
 // 約数列挙を行いll型のvector配列で返す関数
-std::vector<ll> divisor_column(ll a)
+std::vector<ll> divisorColumn(ll a)
 {
     std::vector<ll> ans;
     for (ll i = 1; i <= a; i++)
